@@ -1,5 +1,4 @@
 import tkinter as tk
-import math
 
 class Calculator:
     def __init__(self, root):
@@ -14,18 +13,18 @@ class Calculator:
 
         self.button_refs = []
 
-        # 기본 계산기 버튼
+        # ✅ log 버튼 제거된 버튼 배열
         buttons = [
             ['7', '8', '9', '/'],
             ['4', '5', '6', '*'],
             ['1', '2', '3', '-'],
             ['0', '.', 'C', '+'],
-            ['log', '=']
+            ['=',]
         ]
 
         for row in buttons:
             frame = tk.Frame(root)
-            frame.pack(expand=True, fill="both")
+            frame.pack(expand=True, fill="both", padx=2)
             for char in row:
                 btn = tk.Button(
                     frame,
@@ -36,9 +35,8 @@ class Calculator:
                 btn.pack(side="left", expand=True, fill="both")
                 self.button_refs.append(btn)
 
-        # 데이터 단위 변환기
-        separator = tk.Label(root, text="데이터 단위 변환기", font=("Arial", 14, "bold"))
-        separator.pack(pady=5)
+        # 데이터 단위 변환기 UI
+        tk.Label(root, text="데이터 단위 변환기", font=("Arial", 14, "bold")).pack(pady=5)
 
         self.data_input = tk.Entry(root, font=("Arial", 18), justify="right")
         self.data_input.pack(fill="both", padx=10, pady=5)
@@ -66,13 +64,7 @@ class Calculator:
         elif char == '=':
             try:
                 self.expression = str(eval(self.expression))
-            except:
-                self.expression = "에러"
-        elif char == 'log':
-            try:
-                value = float(self.expression)
-                self.expression = str(math.log10(value))
-            except:
+            except Exception:
                 self.expression = "에러"
         else:
             self.expression += str(char)
