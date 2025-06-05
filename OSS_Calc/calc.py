@@ -12,7 +12,7 @@ class Calculator:
         self.entry = tk.Entry(root, font=("Arial", 24), justify="right")
         self.entry.pack(fill="both", ipadx=8, ipady=15, padx=10, pady=10)
 
-        # 버튼 배열 (log 제거, Tip 유지)
+        # 버튼 배열
         buttons = [
             ['7', '8', '9', '/'],
             ['4', '5', '6', '*'],
